@@ -5,4 +5,18 @@ alias ws='watch sensors'
 alias hibernate="systemctl hibernate"
 alias checkupdates="pacman -Qu | wc -l" 
 alias cz=chezmoi
-test
+alias ls='ls --color=auto'
+alias ll='ls -lah --color=auto'
+alias ls='ls --color=auto'
+alias rm='rm -i'
+alias mv='mv -i'
+alias cp='cp -i'
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit -m'
+alias gp='git push'
+alias gl='git log --oneline --graph --decorate --all'
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias ~="cd ~"

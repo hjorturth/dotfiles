@@ -1,9 +1,22 @@
 #
 # ~/.bash_profile
 #
-#eval `keychain --eval --agents ssh id_rsa`
 
-[[ -f ~/.bashrc ]] && . ~/.bashrc
+# Check for an interactive session
+if [[ $- == *i* ]]; then
+    [[ -f ~/.bashrc ]] && . ~/.bashrc
+fi
 
-# Created by `pipx` on 2023-10-06 20:05:52
-export PATH="$PATH:/home/hjortur/.local/bin"
+# Add ~/.local/bin to PATH if not already present
+if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+    export PATH="$PATH:$HOME/.local/bin"
+fi
+
+if [[ ":$PATH:" != *":$HOME/bin:"* ]]; then
+    export PATH="$PATH:$HOME/bin"
+fi
+
+
+echo -e "\nWelcome, $(whoami)! You are logged into $(hostname)."
+echo "System Uptime: $(uptime -p)"
+echo -e "Disk Usage:\n$(df -h /)\n"
