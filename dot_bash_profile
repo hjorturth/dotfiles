@@ -1,0 +1,9 @@
+#
+# ~/.bash_profile
+#
+#eval `keychain --eval --agents ssh id_rsa`
+
+[[ -f ~/.bashrc ]] && . ~/.bashrc
+
+# Created by `pipx` on 2023-10-06 20:05:52
+export PATH="$PATH:/home/hjortur/.local/bin"

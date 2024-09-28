@@ -1,0 +1,28 @@
+#
+# ~/.bashrc
+#
+
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+ eval `keychain --eval --agents ssh id_rsa`
+ eval "$(register-python-argcomplete pipx)"
+
+alias ls='ls --color=auto'
+PS1='[\u@\h \W]\$ '
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+
+
+export HISTIGNORE="ls*:rm*:cd*:CD*:ps*:exit*:reset*:clear*:synaptic*:mkdir*:cat*:wifi*:btop:top"
+export HISTCONTROL=ignoreboth
+shopt -s histappend
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+PROMPT_DIRTRIM=1
+export PATH=$PATH:/usr/bin/mailx
+export PATH=$PATH:/usr/bin
+
+if [ -e $HOME/.bash_aliases ]; then
+source $HOME/.bash_aliases
+fi
+

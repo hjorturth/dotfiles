@@ -1,0 +1,8 @@
+alias c='clear'
+alias h='history'
+alias wifi='sudo systemctl restart NetworkManager'
+alias ws='watch sensors'
+alias hibernate="systemctl hibernate"
+alias checkupdates="pacman -Qu | wc -l" 
+alias cz=chezmoi
+test

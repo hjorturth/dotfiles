@@ -1,0 +1,36 @@
+[colors]
+
+;; Use pywal.sh in scripts directory to use colors from an image/wallpaper.
+
+;; main colors
+sep = #3C4449
+
+background = ${self.black}
+background-alt = ${self.blue-gray}
+foreground = ${self.black-red}
+foreground-alt= ${self.red}
+primary = ${self.black-red}
+secondary = ${self.red}
+alert = ${self.red}
+disabled = #707880
+ice = ${self.blue}
+
+white = #FFFFFF
+black = #000000
+red = #ff0800
+black-red=#7c1512 
+pink = #EC407A
+purple = #BA68C8
+blue = #42A5F5
+cyan = #4DD0E1
+teal = #02ffe6
+green = #61C766
+lime = #B9C244
+yellow = #FDD835
+amber = #FBC02D
+orange = #E57C46
+brown = #AC8476
+indigo = #6C77BB
+gray = #9E9E9E
+light-gray = #282A2E
+blue-gray = #6D8895

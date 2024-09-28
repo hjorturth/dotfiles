@@ -1,0 +1,527 @@
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:20:...%
+
+
+[module/pulseaudio]
+type = internal/pulseaudio
+use-ui-max = false
+format-volume =<ramp-volume> <label-volume>
+
+label-volume = %percentage%%
+
+
+;Only applies if <ramp-volume> is used
+ramp-volume-0 = 󰕿
+ramp-volume-1 = 󰖀 
+ramp-weight-1 = 2
+ramp-volume-2 = 󰕾
+
+label-muted = 󰸈
+label-muted-foreground = ${colors.disabled}
+click-right = 
+
+
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock 
+
+label-layout = %layout%
+label-layout-foreground = ${colors.primary}
+
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-foreground = ${colors.background}
+label-indicator-background = ${colors.secondary}
+
+[module/memory]
+type = internal/memory
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 5
+
+; Default: 90
+; New in version 3.6.0
+warn-percentage = 95
+
+; Available tags:
+;   <label> (default)
+;   <bar-used>
+;   <bar-free>
+;   <ramp-used>
+;   <ramp-free>
+;   <bar-swap-used>
+;   <bar-swap-free>
+;   <ramp-swap-used>
+;   <ramp-swap-free>
+format = <label>  <bar-used> 
+ramp-used-foreground =  ${colors.secondary}
+
+; Format used when RAM reaches warn-percentage
+; If not defined, format is used instead.
+; Available tags:
+;   <label-warn>
+;   <bar-used>
+;   <bar-free>
+;   <ramp-used>
+;   <ramp-free>
+;   <bar-swap-used>
+;   <bar-swap-free>
+;   <ramp-swap-used>
+;   <ramp-swap-free>
+; New in version 3.6.0
+;format-warn = <label-warn>
+
+; Available tokens:
+;   %percentage_used% (default)
+;   %percentage_free%
+;   %used% (Switches between KiB, MiB, and GiB) (New in version 3.6.0)
+;   %free% (Switches between KiB, MiB, and GiB) (New in version 3.6.0)
+;   %total% (Switches between KiB, MiB, and GiB) (New in version 3.6.0)
+;   %gb_used%
+;   %gb_free%
+;   %gb_total%
+;   %mb_used%
+;   %mb_free%
+;   %mb_total%
+;   %percentage_swap_used%
+;   %percentage_swap_free%
+;   %swap_total% (Switches between KiB, MiB, and GiB) (New in version 3.6.0)
+;   %swap_free% (Switches between KiB, MiB, and GiB) (New in version 3.6.0)
+;   %swap_used% (Switches between KiB, MiB, and GiB) (New in version 3.6.0)
+;   %gb_swap_total%
+;   %gb_swap_free%
+;   %gb_swap_used%
+;   %mb_swap_total%
+;   %mb_swap_free%
+;   %mb_swap_used%
+label = MEM %used% 
+
+
+; Available tokens:
+;   %percentage_used% (default)
+;   %percentage_free%
+;   %used% (Switches between KiB, MiB, and GiB) (New in version 3.6.0)
+;   %free% (Switches between KiB, MiB, and GiB) (New in version 3.6.0)
+;   %total% (Switches between KiB, MiB, and GiB) (New in version 3.6.0)
+;   %gb_used%
+;   %gb_free%
+;   %gb_total%
+;   %mb_used%
+;   %mb_free%
+;   %mb_total%
+;   %percentage_swap_used%
+;   %percentage_swap_free%
+;   %swap_total% (Switches between KiB, MiB, and GiB) (New in version 3.6.0)
+;   %swap_free% (Switches between KiB, MiB, and GiB) (New in version 3.6.0)
+;   %swap_used% (Switches between KiB, MiB, and GiB) (New in version 3.6.0)
+;   %gb_swap_total%
+;   %gb_swap_free%
+;   %gb_swap_used%
+;   %mb_swap_total%
+;   %mb_swap_free%
+;   %mb_swap_used%
+; New in version 3.6.0
+label-warn = RAM %gb_used%/%gb_free%
+
+; Only applies if <bar-used> is used
+bar-used-indicator =" "
+bar-used-width = 20
+bar-used-foreground-0 = ${colors.primary}
+bar-used-foreground-1 = ${colors.secondary}
+bar-used-foreground-2 = ${colors.secondary}
+bar-used-foreground-3 = ${colors.alert}
+bar-used-fill = ▐
+bar-used-empty = ▐
+bar-used-empty-foreground = #444444
+
+; Only applies if <ramp-used> is used
+ramp-used-0 = ▁
+ramp-used-1 = ▂
+ramp-used-2 = ▃
+ramp-used-3 = ▄
+ramp-used-4 = ▅
+ramp-used-5 = ▆
+ramp-used-6 = ▇
+ramp-used-7 = █
+
+; Only applies if <ramp-free> is used
+ramp-free-0 = ▁
+ramp-free-1 = ▂
+ramp-free-2 = ▃
+ramp-free-3 = ▄
+ramp-free-4 = ▅
+ramp-free-5 = ▆
+ramp-free-6 = ▇
+ramp-free-7 = █
+
+
+[module/cpu]
+type = internal/cpu
+warn-percentage = 80
+interval = 2
+format-prefix = "󰻠 "
+format-prefix-foreground = ${colors.secondary}
+label = %percentage:2%%
+
+; Format used when average CPU load (same as %percentage%) reaches warn-percentage
+; If not defined, format is used instead.
+; Available tags:
+;   <label-warn>
+;   <bar-load>
+;   <ramp-load>
+;   <ramp-coreload>
+; New in version 3.6.0
+format-warn-foreground = ${colors.alert}
+format-warn = <label-warn>
+format-warn-prefix = "󰻠 "
+
+; Available tokens:
+;   %percentage% (default) - total cpu load averaged over all cores
+;   %percentage-sum% - Cumulative load on all cores
+;   %percentage-cores% - load percentage for each core
+;   %percentage-core[1-9]% - load percentage for specific core
+; New in version 3.6.0
+label-warn = %percentage%%
+
+
+
+
+
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = %H:%M
+date-alt = %d/%m/%Y %H:%M:%S
+
+label = %date%
+label-foreground = ${colors.secondary}
+
+
+[module/temperature]
+type = internal/temperature
+
+; Available tags:
+;   <label-warn> (default)
+;   <ramp>
+format-warn = <label-warn>
+format = <ramp> <label>
+
+
+ramp-0 = 
+ramp-0-foreground = ${colors.ice}
+ramp-0-weight= 1.5
+ramp-1 = 󱩅
+ramp-1-foreground = ${colors.secondary}
+ramp-1-weight= 2
+ramp-2 = 󰈸
+
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 1
+
+; Thermal zone to use
+; To list all the zone types, run 
+; $ for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
+; Default: 0
+thermal-zone = 0
+
+hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon4/temp1_input
+
+; Base temperature for where to start the ramp (in degrees celsius)
+; Default: 0
+base-temperature = 25
+
+; Threshold temperature to display warning label (in degrees celsius)
+; Default: 80
+warn-temperature = 80
+
+; Available tokens:
+;   %temperature% (deprecated)
+;   %temperature-c%   (default, temperature in °C)
+;   %temperature-f%   (temperature in °F)
+label-warn-foreground = ${colors.alert}
+label-warn =󱗗 %temperature-c%
+
+
+
+
+[module/i3]
+type = internal/i3
+
+; Only show workspaces defined on the same output as the bar
+;
+; Useful if you want to show monitor specific workspaces
+; on different bars
+;
+; Default: false
+pin-workspaces = true
+
+label-dimmed-underline = ${colors.background}
+
+; Available tags:
+;   <label-state> (default) - gets replaced with <label-(focused|unfocused|visible|urgent)>
+;   <label-mode> (default)
+format = <label-state> <label-mode>
+
+; Available tokens:
+;   %mode%
+; Default: %mode%
+label-mode = %mode%
+label-mode-padding = 0
+label-mode-background = #e60053
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-focused =  %index%
+label-focused-foreground = ${colors.foreground-alt}
+label-focused-background = ${colors.background-alt}
+label-focused-underline = ${colors.foreground-alt}
+label-focused-padding = 1
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-unfocused = %index%
+label-unfocused-padding = 1
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-visible = %index%
+label-visible-underline = #555555
+label-visible-padding = 1
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-urgent = %index%
+label-urgent-foreground = #000000
+label-urgent-background = #bd2c40
+label-urgent-padding = 1
+
+; Separator in between workspaces
+#label-separator = |
+#label-separator-padding = 0
+#label-separator-foreground = #fffff
+
+
+[module/updates-pacman-aurhelper]
+type = custom/script
+tail = true
+exec = $HOME/.config/polybar/polybar-scripts/updates-pacman-aurhelper.sh
+interval = 900
+format-foreground = ${colors.red}
+
+
+[module/battery]
+type = internal/battery
+
+; This is useful in case the battery never reports 100% charge
+; Default: 100
+full-at = 99
+
+; format-low once this charge percentage is reached
+; Default: 10
+; New in version 3.6.0
+low-at = 10
+
+; Use the following command to list batteries and adapters:
+; $ ls -1 /sys/class/power_supply/
+battery = BAT0
+adapter = ADP1
+
+format-discharging = <ramp-capacity> <label-discharging> 
+
+; If an inotify event haven't been reported in this many
+; seconds, manually poll for new values.
+;
+; Needed as a fallback for systems that don't report events
+; on sysfs/procfs.
+;
+; Disable polling by setting the interval to 0.
+;
+; Default: 5
+poll-interval = 5
+; Default: %H:%M:%S
+time-format = %H:%M
+label-discharging = %percentage%% (%time%) %consumption%W
+format-discharging-prefix-font = 4
+ramp-capacity-foreground = ${colors.secondary}
+
+ramp-capacity-0 = 󰂃
+ramp-capacity-1 = 󰁺
+ramp-capacity-2 = 󰁻
+ramp-capacity-3 = 󰁼
+ramp-capacity-4 = 󰁽
+ramp-capacity-5 = 󰁾
+ramp-capacity-6 = 󰁿
+ramp-capacity-7 = 󰂀
+ramp-capacity-8 = 󰂁
+ramp-capacity-9 = 󰂂
+ramp-capacity-10 = 󰁹
+
+
+; Only applies if <animation-charging> is used
+animation-charging-foreground = ${colors.secondary}
+
+animation-charging-0 = 󰢜
+animation-charging-1 = 󰂆
+animation-charging-2 = 󰂇
+animation-charging-3 = 󰂈
+animation-charging-4 = 󰢝
+animation-charging-5 = 󰂉
+animation-charging-6 = 󰢞
+animation-charging-7 = 󰂊
+animation-charging-8 = 󰂋
+animation-charging-9 = 󰂅
+animation-charging-10 = 󰢟
+; Framerate in milliseconds
+animation-charging-framerate = 750
+label-charging =  %percentage%% %consumption%W
+format-charging = <animation-charging> <label-charging> 
+
+; Format used when battery level drops to low-at
+; If not defined, format-discharging is used instead.
+; Available tags:
+;   <label-low>
+;   <animation-low>
+;   <bar-capacity>
+;   <ramp-capacity>
+; New in version 3.6.0
+format-low-prefix= 🔋
+format-low-prefix-font = 4
+label-low = %percentage%% (%time%)
+format-low-foreground = ${colors.red}
+format-low = <label-low>  
+
+[fs-base]
+type = internal/fs
+fixed-values = true
+label-mounted = %free%
+
+[module/fs-root]
+inherit = fs-base
+mount-0 = /
+label-mounted = 
+warn-percentage = 90
+format-warn-foreground = ${colors.red}
+format-warn-underline = ${colors.lime}
+format-warn-overline = ${colors.lime}
+label-warn= %free%
+format-warn = CLEAR ROOT <label-warn>  
+
+
+
+[module/fs-home]
+inherit = fs-base
+mount-0 = /home
+
+[module/streams]
+type = custom/menu
+
+; If true, <label-toggle> will be to the left of the menu items (default).
+; If false, it will be on the right of all the items.
+expand-right = true
+
+; "menu-LEVEL-N" has the same properties as "label-NAME" with
+; the additional "exec" property
+;
+; Commands will be executed using "/bin/sh -c $COMMAND"
+
+menu-0-0 = Hasanabi
+menu-0-0-exec = streamlink twitch.tv/hasanabi -Q &
+menu-0-1 = Central Committe
+menu-0-1-exec = streamlink twitch.tv/central_committee -Q &
+menu-0-2 = LFV
+menu-0-2-exec = streamlink twitch.tv/leftflankvets
+
+label-open = " "
+label-close = x
+label-font = 5
+
+; Optional item separator
+; Default: none
+label-separator = |
+
+[backlight-base]
+type = internal/backlight
+
+; Use the following command to list available cards:
+; $ ls -1 /sys/class/backlight
+card = amdgpu_bl1
+
+; Use the `/sys/class/backlight/.../actual-brightness` file
+; rather than the regular `brightness` file.
+; Defaults to true unless the specified card is an amdgpu backlight.
+; New in version 3.6.0
+use-actual-brightness = true
+
+; Enable changing the backlight with the scroll wheel
+; NOTE: This may require additional configuration on some systems. Polybar will
+; write to `/sys/class/backlight/${self.card}/brightness` which requires polybar
+; to have write access to that file.
+; DO NOT RUN POLYBAR AS ROOT. 
+; The recommended way is to add the user to the
+; `video` group and give that group write-privileges for the `brightness` file.
+; See the ArchWiki for more information:
+; https://wiki.archlinux.org/index.php/Backlight#ACPI
+; Default: false
+enable-scroll = false
+bar-indicator = 
+bar-width = 4
+bar-foreground-0 = $(colors.white)
+bar-foreground-1 = $(colors.white)
+bar-foreground-2 = $(colors.white)
+bar-foreground-3 = $(colors.white)
+bar-fill = ▐
+bar-empty = ▐
+bar-empty-foreground = #444444
+; Only applies if <ramp> is used
+
+ramp-0 = 🌕
+ramp-1 = 🌔
+ramp-2 = 🌓
+ramp-3 = 🌒
+ramp-4 = 🌑
+
+format-ramp-font= 5
+
+[module/backlight-eDP]
+inherit = backlight-base
+label = %percentage% 
+format = <label>% <ramp> 
+format-ramp-font= 3
+
+[module/openweathermap-fullfeatured]
+type = custom/script
+exec = ~/.config/my_scripts/weather/openweather.sh
+interval = 600
+label-font = 5
+
+[module/twitchmenu]
+type = custom/ipc
+click-left= ~/.config/my_scripts/empty.sh
+#click-left = ~/.config/my_scripts/twitchmenu.sh %menu%
+label = " "
+label-close = x
+label-font = 3
