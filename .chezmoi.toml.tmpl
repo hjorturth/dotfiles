@@ -1,4 +1,18 @@
+# Prompt for email address once
 {{- $email := promptStringOnce . "email" "Email address" -}}
 
+# Data section with user's email address
 [data]
     email = {{ $email | quote }}
+
+# ChezMoi specific configurations
+[editor]
+    # Configure the editor to be VS Code for 'chezmoi edit'
+    command = "code"
+    args = [ "--wait" ]  # Wait for the editor to close before proceeding
+
+# Set the diff command to use VS Code for 'chezmoi diff'
+[diff]
+    command = "code"
+    args = [ "--wait", "--diff" ]  # Use the diff mode of VS Code and wait for it to close
+
