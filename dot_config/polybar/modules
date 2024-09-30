@@ -3,6 +3,78 @@
 type = internal/xwindow
 label = %title:0:20:...%
 
+[module/i3]
+type = internal/i3
+
+; Only show workspaces defined on the same output as the bar
+;
+; Useful if you want to show monitor specific workspaces
+; on different bars
+;
+; Default: false
+pin-workspaces = true
+
+label-dimmed-underline = ${colors.background}
+
+; Available tags:
+;   <label-state> (default) - gets replaced with <label-(focused|unfocused|visible|urgent)>
+;   <label-mode> (default)
+format = <label-state> <label-mode>
+
+; Available tokens:
+;   %mode%
+; Default: %mode%
+label-mode = %mode%
+label-mode-padding = 0
+label-mode-background = #e60053
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-focused =  %index%
+label-focused-foreground = ${colors.foreground}
+label-focused-background = ${colors.background}
+label-focused-underline = ${colors.secondary}
+label-focused-padding = 1
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-unfocused = %index%
+label-unfocused-padding = 1
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-visible = %index%
+label-visible-underline = #555555
+label-visible-padding = 1
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-urgent = %index%
+label-urgent-foreground = ${colors.foreground}
+label-urgent-background = ${colors.background}
+label-urgent-padding = 1
+
+; Separator in between workspaces
+#label-separator = |
+#label-separator-padding = 0
+#label-separator-foreground = #fffff
+
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -98,8 +170,9 @@ ramp-used-foreground =  ${colors.secondary}
 ;   %mb_swap_total%
 ;   %mb_swap_free%
 ;   %mb_swap_used%
-label = MEM %used% 
-
+label = %used% 
+label-foreground = ${colors.primary}
+format-prefix="MEM " 
 
 ; Available tokens:
 ;   %percentage_used% (default)
@@ -130,13 +203,16 @@ label-warn = RAM %gb_used%/%gb_free%
 ; Only applies if <bar-used> is used
 bar-used-indicator =" "
 bar-used-width = 20
-bar-used-foreground-0 = ${colors.primary}
+bar-used-foreground-0 = ${colors.secondary}
 bar-used-foreground-1 = ${colors.secondary}
-bar-used-foreground-2 = ${colors.secondary}
-bar-used-foreground-3 = ${colors.alert}
+bar-used-foreground-2 = ${colors.primary}
+bar-used-foreground-3 = ${colors.primary}
+bar-used-foreground-4 = ${colors.primary}
+bar-used-foreground-5 = ${colors.alert}
+
 bar-used-fill = ▐
 bar-used-empty = ▐
-bar-used-empty-foreground = #444444
+bar-used-empty-foreground = ${colors.disabled}
 
 ; Only applies if <ramp-used> is used
 ramp-used-0 = ▁
@@ -164,9 +240,9 @@ type = internal/cpu
 warn-percentage = 80
 interval = 2
 format-prefix = "󰻠 "
-format-prefix-foreground = ${colors.secondary}
+format-prefix-foreground = ${colors.foreground}
+label-foreground = ${colors.primary}
 label = %percentage:2%%
-
 ; Format used when average CPU load (same as %percentage%) reaches warn-percentage
 ; If not defined, format is used instead.
 ; Available tags:
@@ -200,7 +276,7 @@ date = %H:%M
 date-alt = %d/%m/%Y %H:%M:%S
 
 label = %date%
-label-foreground = ${colors.secondary}
+label-foreground = ${colors.primary}
 
 
 [module/temperature]
@@ -251,86 +327,12 @@ label-warn =󱗗 %temperature-c%
 
 
 
-
-[module/i3]
-type = internal/i3
-
-; Only show workspaces defined on the same output as the bar
-;
-; Useful if you want to show monitor specific workspaces
-; on different bars
-;
-; Default: false
-pin-workspaces = true
-
-label-dimmed-underline = ${colors.background}
-
-; Available tags:
-;   <label-state> (default) - gets replaced with <label-(focused|unfocused|visible|urgent)>
-;   <label-mode> (default)
-format = <label-state> <label-mode>
-
-; Available tokens:
-;   %mode%
-; Default: %mode%
-label-mode = %mode%
-label-mode-padding = 0
-label-mode-background = #e60053
-
-; Available tokens:
-;   %name%
-;   %icon%
-;   %index%
-;   %output%
-; Default: %icon%  %name%
-label-focused =  %index%
-label-focused-foreground = ${colors.foreground-alt}
-label-focused-background = ${colors.background-alt}
-label-focused-underline = ${colors.foreground-alt}
-label-focused-padding = 1
-
-; Available tokens:
-;   %name%
-;   %icon%
-;   %index%
-;   %output%
-; Default: %icon%  %name%
-label-unfocused = %index%
-label-unfocused-padding = 1
-
-; Available tokens:
-;   %name%
-;   %icon%
-;   %index%
-;   %output%
-; Default: %icon%  %name%
-label-visible = %index%
-label-visible-underline = #555555
-label-visible-padding = 1
-
-; Available tokens:
-;   %name%
-;   %icon%
-;   %index%
-;   %output%
-; Default: %icon%  %name%
-label-urgent = %index%
-label-urgent-foreground = #000000
-label-urgent-background = #bd2c40
-label-urgent-padding = 1
-
-; Separator in between workspaces
-#label-separator = |
-#label-separator-padding = 0
-#label-separator-foreground = #fffff
-
-
 [module/updates-pacman-aurhelper]
 type = custom/script
 tail = true
 exec = $HOME/.config/polybar/polybar-scripts/updates-pacman-aurhelper.sh
 interval = 900
-format-foreground = ${colors.red}
+format-foreground = ${colors.alert}
 
 
 [module/battery]
@@ -366,7 +368,7 @@ poll-interval = 5
 time-format = %H:%M
 label-discharging = %percentage%% (%time%) %consumption%W
 format-discharging-prefix-font = 4
-ramp-capacity-foreground = ${colors.secondary}
+ramp-capacity-foreground = ${colors.foreground}
 
 ramp-capacity-0 = 󰂃
 ramp-capacity-1 = 󰁺
@@ -382,7 +384,7 @@ ramp-capacity-10 = 󰁹
 
 
 ; Only applies if <animation-charging> is used
-animation-charging-foreground = ${colors.secondary}
+animation-charging-foreground = ${colors.foreground}
 
 animation-charging-0 = 󰢜
 animation-charging-1 = 󰂆
@@ -398,7 +400,8 @@ animation-charging-10 = 󰢟
 ; Framerate in milliseconds
 animation-charging-framerate = 750
 label-charging =  %percentage%% %consumption%W
-format-charging = <animation-charging> <label-charging> 
+format-charging = <animation-charging> <label-charging>
+label-charging-foreground = ${colors.primary}
 
 ; Format used when battery level drops to low-at
 ; If not defined, format-discharging is used instead.
@@ -411,22 +414,23 @@ format-charging = <animation-charging> <label-charging>
 format-low-prefix= 🔋
 format-low-prefix-font = 4
 label-low = %percentage%% (%time%)
-format-low-foreground = ${colors.red}
+format-low-foreground = ${colors.alert}
 format-low = <label-low>  
 
 [fs-base]
 type = internal/fs
 fixed-values = true
 label-mounted = %free%
+label-mounted-foreground = ${colors.foreground}
 
 [module/fs-root]
 inherit = fs-base
 mount-0 = /
 label-mounted = 
 warn-percentage = 90
-format-warn-foreground = ${colors.red}
-format-warn-underline = ${colors.lime}
-format-warn-overline = ${colors.lime}
+format-warn-foreground = ${colors.alert}
+format-warn-underline = ${colors.ice}
+format-warn-overline = ${colors.ice}
 label-warn= %free%
 format-warn = CLEAR ROOT <label-warn>  
 
@@ -436,32 +440,6 @@ format-warn = CLEAR ROOT <label-warn>
 inherit = fs-base
 mount-0 = /home
 
-[module/streams]
-type = custom/menu
-
-; If true, <label-toggle> will be to the left of the menu items (default).
-; If false, it will be on the right of all the items.
-expand-right = true
-
-; "menu-LEVEL-N" has the same properties as "label-NAME" with
-; the additional "exec" property
-;
-; Commands will be executed using "/bin/sh -c $COMMAND"
-
-menu-0-0 = Hasanabi
-menu-0-0-exec = streamlink twitch.tv/hasanabi -Q &
-menu-0-1 = Central Committe
-menu-0-1-exec = streamlink twitch.tv/central_committee -Q &
-menu-0-2 = LFV
-menu-0-2-exec = streamlink twitch.tv/leftflankvets
-
-label-open = " "
-label-close = x
-label-font = 5
-
-; Optional item separator
-; Default: none
-label-separator = |
 
 [backlight-base]
 type = internal/backlight
@@ -489,13 +467,13 @@ use-actual-brightness = true
 enable-scroll = false
 bar-indicator = 
 bar-width = 4
-bar-foreground-0 = $(colors.white)
-bar-foreground-1 = $(colors.white)
-bar-foreground-2 = $(colors.white)
-bar-foreground-3 = $(colors.white)
+bar-foreground-0 = ${colors.background}
+bar-foreground-1 = ${colors.background}
+bar-foreground-2 = ${colors.background}
+bar-foreground-3 = ${colors.background}
 bar-fill = ▐
 bar-empty = ▐
-bar-empty-foreground = #444444
+bar-empty-foreground = ${colors.background}
 ; Only applies if <ramp> is used
 
 ramp-0 = 🌕
@@ -514,14 +492,14 @@ format-ramp-font= 3
 
 [module/openweathermap-fullfeatured]
 type = custom/script
-exec = ~/.config/my_scripts/weather/openweather.sh
-interval = 600
+exec = ~/bin/bash/openweather.sh
+interval = 1
 label-font = 5
+
 
 [module/twitchmenu]
 type = custom/ipc
-click-left= ~/.config/my_scripts/empty.sh
-#click-left = ~/.config/my_scripts/twitchmenu.sh %menu%
+click-left= ~/bin/bash/twitch_menu.sh
 label = " "
 label-close = x
 label-font = 3
