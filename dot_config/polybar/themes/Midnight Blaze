@@ -1,0 +1,11 @@
+[colors]
+; Main colors
+background = #1A1A1A
+foreground = #E0E0E0
+
+; Additional colors
+primary = #FF4500      
+secondary = #FF6347
+alert = #FFD700        
+disabled = #808080
+ice = #FA8072          

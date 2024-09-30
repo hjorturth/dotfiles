@@ -75,6 +75,12 @@ label-urgent-padding = 1
 #label-separator-padding = 0
 #label-separator-foreground = #fffff
 
+[module/tray]
+type = internal/tray
+
+format-margin = 8px
+tray-spacing = 8px
+
 
 [module/pulseaudio]
 type = internal/pulseaudio

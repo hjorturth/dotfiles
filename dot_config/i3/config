@@ -43,5 +43,3 @@ new_window 1pixel
 
 #No gaps in my windows
 smart_borders no_gaps
-#gaps inner 5
-#gaps outer 5
