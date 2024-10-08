@@ -1,11 +1,31 @@
 [colors]
 ; Main colors
-background = #2B2F33   
-foreground = #A9A9A9   
+background = #000000
+foreground = #FF0000   
 
 ; Additional colors
-primary = #228B22      
-secondary = #556B2F    
-alert = #8B4513        
-disabled = #808080     
-ice = #90EE90          
+primary = #FFFFFF    
+secondary = #7C1512    
+alert = #02FFE6        
+disabled = #707880      
+ice = #B9C244         
+
+; Custom colors
+white = #FFFFFF
+black = #000000
+red = #FF0000
+black-red = #7C1512
+pink = #EC407A
+purple = #BA68C8
+blue = #42A5F5
+cyan = #4DD0E1
+teal = #02FFE6
+green = #61C766
+yellow = #FDD835
+amber = #FBC02D
+orange = #E57C46
+brown = #AC8476
+indigo = #6C77BB
+gray = #9E9E9E
+light-gray = #282A2E
+blue-gray = #6D8895

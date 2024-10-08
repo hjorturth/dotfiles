@@ -16,6 +16,9 @@ if [[ ":$PATH:" != *":$HOME/bin:"* ]]; then
     export PATH="$PATH:$HOME/bin"
 fi
 
+if [[ ":$PATH:" != *":$HOME/bin/bash:"* ]]; then
+    export PATH="$PATH:$HOME/bin/bash"
+fi
 
 echo -e "\nWelcome, $(whoami)! You are logged into $(hostname)."
 echo "System Uptime: $(uptime -p)"
